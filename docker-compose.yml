@@ -1,15 +1,16 @@
+  GNU nano 6.2                                             docker-compose.yml                                                       
 version: "3.9"
 
 services:
   apache_files:
-    image: helistam/apache-task:latest
+    image: ghcr.io/helistam/apache-task
     container_name: apacheSe
     networks:
       custom_network:
         ipv4_address: 192.30.0.2
 
   nginx_files:
-    image: helistam/task14.3:latest
+    image: ghcr.io/helistam/task14.3
     ports:
       - "80:80"
     depends_on:
