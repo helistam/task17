@@ -32,7 +32,7 @@ pipeline {
         }
          stage('Push') {
             steps {
-                withCredentials([string(credentialsId: 'dockerHubPassword', variable: 'DOCKER_HUB_PASSWORD')]) {
+                withCredentials([string(credentialsId: 'GithubCred', variable: 'GithubCred')]) {
                     sh '''
                     docker tag apachese:latest ghcr.io/helistam/apache-task:latest
                     docker tag task14.3:latest ghcr.io/helistam/task14.3
