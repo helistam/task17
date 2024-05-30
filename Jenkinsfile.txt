@@ -30,15 +30,18 @@ pipeline {
                 '''
             }
         }
-        stage('Push') {
+         stage('Push') {
             steps {
-                sh '''
-                docker tag apachese:latest ghcr.io/helistam/apache-task:latest
-                docker tag task14.3:latest ghcr.io/helistam/task14.3
-                
-                docker push ghcr.io/helistam/apache-task:latest
-                docker push ghcr.io/helistam/task14.3
-                '''
+                withCredentials([string(credentialsId: 'dockerHubPassword', variable: 'DOCKER_HUB_PASSWORD')]) {
+                    sh '''
+                    docker tag apachese:latest ghcr.io/helistam/apache-task:latest
+                    docker tag task14.3:latest ghcr.io/helistam/task14.3
+                    
+                    echo $DOCKER_HUB_PASSWORD | docker login ghcr.io -u helistam --password-stdin
+                    docker push ghcr.io/helistam/apache-task:latest
+                    docker push ghcr.io/helistam/task14.3
+                    '''
+                }
             }
         }
         stage('Deploy') {
