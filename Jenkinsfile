@@ -32,12 +32,12 @@ pipeline {
         }
          stage('Push') {
             steps {
-                withCredentials([string(credentialsId: 'GithubCred', variable: 'GithubCred')]) {
+                withCredentials([string(credentialsId: 'AccessToken', variable: 'AccessToken')]) {
                     sh '''
                     docker tag apachese:latest ghcr.io/helistam/apache-task:latest
                     docker tag task14.3:latest ghcr.io/helistam/task14.3
                     
-                    echo $GithubCred | docker login ghcr.io -u helistam --password-stdin
+                    echo $AccessToken | docker login ghcr.io -u helistam --password-stdin
                     docker push ghcr.io/helistam/apache-task:latest
                     docker push ghcr.io/helistam/task14.3
                     '''
