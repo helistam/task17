@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nginx Actions</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Nginx Actions</h1>
+        <button onclick="location.href='/secondpage'">Go to second page</button>
+        <button onclick="location.href='/music'">Download Believer.mp3</button>
+        <button onclick="location.href='/secondserver'">Go to BSUIR site</button>
+        <button onclick="location.href='/info.php'">Go to Info.php</button>
+        <button onclick="location.href='/redblue'">Go to RedBlue (Load balanced)</button>
+        <button onclick="location.href='/image1/image1.jpg'">View rotated image1 (JPG)</button>
+        <button onclick="location.href='/image2/image2.png'">View image2 (PNG)</button>
+        <button onclick="location.href='/StatPage'">Viev CPU load</button>
+    </div>
+</body>
+
+</html>
