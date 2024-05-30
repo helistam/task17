@@ -37,7 +37,7 @@ pipeline {
                     docker tag apachese:latest ghcr.io/helistam/apache-task:latest
                     docker tag task14.3:latest ghcr.io/helistam/task14.3
                     
-                    echo $DOCKER_HUB_PASSWORD | docker login ghcr.io -u helistam --password-stdin
+                    echo $GithubCred | docker login ghcr.io -u helistam --password-stdin
                     docker push ghcr.io/helistam/apache-task:latest
                     docker push ghcr.io/helistam/task14.3
                     '''
