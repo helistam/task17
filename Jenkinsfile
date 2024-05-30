@@ -56,4 +56,10 @@ pipeline {
             }
         }
     }
+     post {
+        always {
+            echo 'Cleaning up...'
+            deleteDir() // Удаление workspace
+        }
+    }
 }
