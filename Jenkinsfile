@@ -23,7 +23,7 @@ pipeline {
             steps {
                 sh '''
                 cd task17/apache_files
-                docker image prune -f
+                docker image prune -af
                 docker build -t apachese:latest .
                 cd ../nginx_files
                 docker build -t task14.3:latest .
