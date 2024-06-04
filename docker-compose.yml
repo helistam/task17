@@ -6,8 +6,8 @@ services:
    ports:
      - 9090:9090
    volumes:
-     - /home/user/Internship/Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-     - /home/user/Internship/Prometheus/alerts.yml:/etc/prometheus/alerts.yml
+     - /home/ubuntu/task17/prometheus.yml:/etc/prometheus/prometheus.yml
+     - /home/ubuntu/task17/alerts.yml:/etc/prometheus/alerts.yml
    networks:
     custom_network: 
       ipv4_address: 192.30.0.4
@@ -16,7 +16,7 @@ services:
    image: quay.io/prometheus/alertmanager
    container_name: alertmanager
    volumes:
-     - /home/user/Internship/Prometheus/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+     - /home/ubuntu/task17/alertmanager.yml:/etc/alertmanager/alertmanager.yml
    networks:
     custom_network: 
       ipv4_address: 192.30.0.5
