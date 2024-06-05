@@ -5,10 +5,9 @@ route:
   receiver: "telegram-receiver"
   routes:
     - match_re:
-        alertname: "HighCpuUsage"
-        instance_role: ".*"  # Добавляем метку instance_role для сопоставления всех значений
+        #alertname: "HighCpuUsage"
+        instance_role: "CPU" # Добавляем метку instance_role для сопоставления всех значений
       receiver: "telegram-receiver"
-
 
 receivers:
   - name: "telegram-receiver"
@@ -17,4 +16,3 @@ receivers:
         chat_id: -1002172090399
         send_resolved: true
         message: "{{ .CommonAnnotations.description }}"
-
