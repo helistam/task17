@@ -6,7 +6,9 @@ route:
   routes:
     - match_re:
         alertname: "HighCpuUsage"
+        instance_role: ".*"  # Добавляем метку instance_role для сопоставления всех значений
       receiver: "telegram-receiver"
+
 
 receivers:
   - name: "telegram-receiver"
