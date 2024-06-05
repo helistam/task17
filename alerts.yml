@@ -1,22 +1,12 @@
-          
 groups:
   - name: example
     rules:
-      - alert: HighCpuUsageServer1
-        expr: 100 - (avg by (instance) (irate(node_cpu_seconds_total{instance="192.30.0.6:9100", mode="idle"}[5m])) * 100) > 70
+      - alert: HighCpuUsage
+        expr: 100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 70
         for: 1m
         labels:
           severity: critical
         annotations:
           summary: "High CPU usage on instance {{ $labels.instance }}"
-          description: "Server 1 CPU usage is above 70% (current value: {{ $value }}%)"
-
-      - alert: HighCpuUsageServer2
-        expr: 100 - (avg by (instance) (irate(node_cpu_seconds_total{instance="3.239.150.93:9100", mode="idle"}[5m])) * 100) > 70
-        for: 1m
-        labels:
-          severity: critical
-        annotations:
-          summary: "High CPU usage on instance {{ $labels.instance }}"
-          description: "Server 2 CPU usage is above 70% (current value: {{ $value }}%)"
+          description: "CPU usage is above 70% on instance {{ $labels.instance }} (current value: {{ $value }}%)"
 
