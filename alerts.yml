@@ -7,23 +7,17 @@ groups:
         labels:
           severity: critical
           instance_role: "CPU" # Добавляем метку instance_role
+          instance: "CPU"
         annotations:
           summary: "High CPU usage on instance {{ $labels.instance }}"
           description: "Instance {{ $labels.instance_role }} CPU usage is above 70% (current value: {{ $value }}%)"
-        selector:
-          match:
-            instance_role: "CPU"
-
       - alert: HighVirtualMemoryUsage
         expr: node_memory_VmallocChunk_bytes / node_memory_MemTotal_bytes * 100 > 70
         for: 1m
         labels:
           severity: critical
           instance_role: "VM" # Добавляем метку instance_role
-          instance: "your_instance_label" # Добавляем метку instance
+          instance: "VM" # Добавляем метку instance
         annotations:
           summary: "High virtual memory usage on instance {{ $labels.instance }}"
           description: "Instance {{ $labels.instance }} virtual memory usage is above 70% (current value: {{ $value }}%)"
-        selector:
-          match:
-            instance_role: "VM"
