@@ -11,6 +11,10 @@ groups:
         annotations:
           summary: "High CPU usage on instance {{ $labels.instance }}"
           description: "Instance {{ $labels.instance_role }} CPU usage is above 70% (current value: {{ $value }}%)"
+        selector:
+          match:
+            instance_role: "CPU"
+
       - alert: HighVirtualMemoryUsage
         expr: node_memory_VmallocChunk_bytes / node_memory_MemTotal_bytes * 100 > 70
         for: 1m
