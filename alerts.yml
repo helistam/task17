@@ -6,7 +6,8 @@ groups:
         for: 1m
         labels:
           severity: critical
+          instance_role: "{{ $labels.instance_role }}"  # Добавляем метку instance_role
         annotations:
           summary: "High CPU usage on instance {{ $labels.instance }}"
-          description: "CPU usage is above 70% on instance {{ $labels.instance }} (current value: {{ $value }}%)"
+          description: "Instance {{ $labels.instance_role }} CPU usage is above 70% (current value: {{ $value }}%)"
 

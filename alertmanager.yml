@@ -4,29 +4,15 @@ global:
 route:
   receiver: "default-receiver"
   routes:
-    - match:
-        alertname: "HighCpuUsageServer1"
-      receiver: "telegram-server1"
-    - match:
-        alertname: "HighCpuUsageServer2"
-      receiver: "telegram-server2"
+    - match_re:
+        alertname: "HighCpuUsage"
+      receiver: "telegram-receiver"
 
-receivers:
-  - name: "default-receiver"
-    webhook_configs:
-      - url: "http://127.0.0.1:5001/"
-
-  - name: "telegram-server1"
+  - name: "telegram-receiver"
     telegram_configs:
       - bot_token: "7265856018:AAE5roL4ayMWpgGtAnQYhzWLqsCkNuftHo0"
         chat_id: -1002172090399
         send_resolved: true
-        message: "{{ .CommonAnnotations.description }} (Server 1)"
-
-  - name: "telegram-server2"
-    telegram_configs:
-      - bot_token: "7265856018:AAE5roL4ayMWpgGtAnQYhzWLqsCkNuftHo0"
-        chat_id: -1002172090399
-        send_resolved: true
-        message: "{{ .CommonAnnotations.description }} (Server 2)"
+        message: >
+          {{ .CommonAnnotations.description }} (Instance Role: {{ $labels.instance_role }})
 
