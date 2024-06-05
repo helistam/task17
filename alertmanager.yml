@@ -5,12 +5,10 @@ route:
   receiver: "telegram-receiver"
   routes:
     - match_re:
-        #alertname: "HighCpuUsage"
-        instance_role: "CPU" # Добавляем метку instance_role для сопоставления всех значений
+        role: "CPU" # Добавляем метку instance_role для сопоставления всех значений
       receiver: "telegram-receiver"
     - match_re:
-        #alertname: "HighCpuUsage"
-        instance_role: "VM" # Добавляем метку instance_role для сопоставления всех значений
+        role: "VM"
       receiver: "telegram-receiver"
 
 receivers:

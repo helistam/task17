@@ -6,18 +6,16 @@ groups:
         for: 1m
         labels:
           severity: critical
-          instance_role: "CPU" # Добавляем метку instance_role
-          instance: "CPU"
+          role: "CPU" # Добавляем метку instance_role
         annotations:
           summary: "High CPU usage on instance {{ $labels.instance }}"
-          description: "Instance {{ $labels.instance_role }} CPU usage is above 70% (current value: {{ $value }}%)"
+          description: "Instance {{ $labels.instance_role }} CPU usage is above 60% (current value: {{ $value }}%)"
       - alert: HighVirtualMemoryUsage
         expr: avg_over_time((    (node_memory_MemTotal_bytes{role="VM"} - (node_memory_MemFree_bytes{role="VM"} + node_memory_Buffers_bytes{role="VM"} + node_memory_Cached_bytes{role="VM"})) /    node_memory_MemTotal_bytes{role="VM"} )[30s:10s]) * 100 > 60
         for: 30s
         labels:
           severity: critical
-          instance_role: "VM" # Добавляем метку instance_role
-          instance: "VM" # Добавляем метку instance
+          role: "VM" # Добавляем метку instance_role
         annotations:
           summary: "High virtual memory usage on instance {{ $labels.instance }}"
           description: "Instance {{ $labels.instance }} virtual memory usage is above 70% (current value: {{ $value }}%)"
