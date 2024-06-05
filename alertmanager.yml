@@ -17,5 +17,11 @@ receivers:
         chat_id: -1002172090399
         send_resolved: true
         message: >
-          {{ .CommonAnnotations.description }} (Instance Role: {{ $labels.instance_role }})
+          {{ if .Status == "firing" }}
+            {{ .CommonAnnotations.summary }}
+            {{ .CommonAnnotations.description }}
+            (Instance Role: {{ $labels.instance_role }})
+          {{ else }}
+            Alert resolved: {{ .CommonAnnotations.summary }}
+          {{ end }}
 
