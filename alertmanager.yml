@@ -8,6 +8,7 @@ route:
         alertname: "HighCpuUsage"
       receiver: "telegram-receiver"
 
+receivers:
   - name: "telegram-receiver"
     telegram_configs:
       - bot_token: "7265856018:AAE5roL4ayMWpgGtAnQYhzWLqsCkNuftHo0"
