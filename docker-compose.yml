@@ -15,6 +15,8 @@ services:
   alertmanager_container:
    image: quay.io/prometheus/alertmanager
    container_name: alertmanager
+   ports:
+     - 9094:9094
    volumes:
      - /home/ubuntu/task17/alertmanager.yml:/etc/alertmanager/alertmanager.yml
    networks:
