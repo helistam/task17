@@ -15,24 +15,26 @@ scrape_configs:
   - job_name: "ec2_instances"
     ec2_sd_configs:
       - region: us-east-1
+        port: 9100
         filters:
           - name: "tag:Role"
             values: ["CPU"]
     relabel_configs:
-      - source_labels: [__meta_ec2_private_ip]
-        target_label: __address__
-        replacement: ${1}:9100
+      - source_labels: [_meta_ec2_tag_Role]
+        target_label: "role"
+        replacement: "CPU"
 
   - job_name: "ec2_instances_vm"
     ec2_sd_configs:
       - region: us-east-1
+        port: 9100
         filters:
           - name: "tag:Role"
             values: ["VM"]
     relabel_configs:
-      - source_labels: [__meta_ec2_private_ip]
-        target_label: __address__
-        replacement: ${1}:9100
+      - source_labels: [_meta_ec2_tag_Role]
+        target_label: "role"
+        replacement: "VM"
 
   # - job_name: "listen node exporter"
   #   static_configs:
