@@ -16,12 +16,5 @@ receivers:
       - bot_token: "7265856018:AAE5roL4ayMWpgGtAnQYhzWLqsCkNuftHo0"
         chat_id: -1002172090399
         send_resolved: true
-        message: >
-          {{ if .Status == "firing" }}
-            {{ .CommonAnnotations.summary }}
-            {{ .CommonAnnotations.description }}
-            (Instance Role: {{ $labels.instance_role }})
-          {{ else }}
-            Alert resolved: {{ .CommonAnnotations.summary }}
-          {{ end }}
+        message: "{{ .CommonAnnotations.description }}"
 
