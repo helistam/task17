@@ -6,7 +6,7 @@ route:
   routes:
     - match_re:
         role: "CPU" # Добавляем метку instance_role для сопоставления всех значений
-      receiver: "telegram-receiver"
+      receiver: "slack-notification"
     - match_re:
         role: "VM"
       receiver: "telegram-receiver"
@@ -18,3 +18,7 @@ receivers:
         chat_id: -1002172090399
         send_resolved: true
         message: "{{ .CommonAnnotations.description }}"
+  - name: 'slack-notification'
+    slack_configs:
+    - api_url: https://hooks.slack.com/services/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
+      channel: '#task22'
