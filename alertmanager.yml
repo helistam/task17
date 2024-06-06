@@ -20,5 +20,8 @@ receivers:
         message: "{{ .CommonAnnotations.description }}"
   - name: 'slack-notification'
     slack_configs:
-    - api_url: "https://hooks.slack.com/services/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"
-      channel: '#task22'
+      - api_url: "https://hooks.slack.com/services/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"
+        channel: '#task22'
+        send_resolved: true
+        text: "{{ .CommonAnnotations.description }}"     
+ 
