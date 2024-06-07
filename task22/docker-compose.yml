@@ -60,7 +60,20 @@ services:
     networks:
       custom_network:
         ipv4_address: 192.30.0.9
-
+        
+      ### Task 23 ###
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginx_exporter
+    ports:
+      - "9113:9113"
+    command:
+      - '-nginx.scrape-uri=http://nginx:80/stub_status'
+    depends_on:
+      - nginx
+    networks:
+      - custom_network
+      
 networks:
   custom_network:
     driver: bridge
