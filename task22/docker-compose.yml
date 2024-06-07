@@ -70,7 +70,7 @@ services:
     command:
       - '-nginx.scrape-uri=http://nginx:80/stub_status'
     depends_on:
-      - nginx
+      - nginx_files
     networks:
       - custom_network
       

@@ -12,6 +12,10 @@ rule_files:
   - /etc/prometheus/alerts.yml
 
 scrape_configs:
+  - job_name: 'nginx_exporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['44.214.118.78:9113']
   - job_name: "ec2_instances"
     ec2_sd_configs:
       - region: us-east-1
